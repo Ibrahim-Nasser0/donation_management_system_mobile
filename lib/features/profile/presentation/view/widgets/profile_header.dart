@@ -28,25 +28,25 @@ class ProfileHeader extends StatelessWidget {
                 ],
               ),
               child: CircleAvatar(
-                radius: 65.r,
+                radius: 70.r,
                 backgroundImage: const AssetImage('assets/images/profile.png'),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(4.w),
+              padding: EdgeInsets.all(6.w),
               decoration: const BoxDecoration(
                 color: Color(0xFF00695C),
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.check, color: Colors.white, size: 16.sp),
+              child: Icon(Icons.check, color: Colors.white, size: 18.sp),
             ),
           ],
         ),
-        Gap(20.h),
+        Gap(24.h),
         Text(
           'Marcus Thorne',
           style: GoogleFonts.montserrat(
-            fontSize: 28.sp,
+            fontSize: 32.sp,
             fontWeight: FontWeight.bold,
             color: AppColors.headerText,
           ),

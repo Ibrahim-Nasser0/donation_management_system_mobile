@@ -28,7 +28,7 @@ class LoginView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40.r),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.white.withValues(alpha: 0.2),
                       blurRadius: 20,
                       offset: const Offset(0, 10),
                     ),

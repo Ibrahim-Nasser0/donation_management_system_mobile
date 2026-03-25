@@ -53,7 +53,7 @@ class FollowedCard extends StatelessWidget {
 
   Widget _buildCover() {
     return Container(
-      height: 180.h,
+      height: 220.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: themeColor.withOpacity(0.6),
@@ -178,7 +178,7 @@ class FollowedCard extends StatelessWidget {
                 foregroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.r),
+                  borderRadius: BorderRadius.circular(30.r),
                 ),
                 elevation: 0,
               ),

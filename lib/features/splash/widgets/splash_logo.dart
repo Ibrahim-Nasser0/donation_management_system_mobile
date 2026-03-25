@@ -16,7 +16,7 @@ class SplashLogo extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.white.withValues(alpha: 0.1),
             blurRadius: 10,
             spreadRadius: 2,
           ),

@@ -3,8 +3,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ImpactScoreCard extends StatelessWidget {
+class ImpactScoreCard extends StatefulWidget {
   const ImpactScoreCard({super.key});
+
+  @override
+  State<ImpactScoreCard> createState() => _ImpactScoreCardState();
+}
+
+class _ImpactScoreCardState extends State<ImpactScoreCard> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +54,17 @@ class ImpactScoreCard extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: ClipPath(
-              clipper: _WaveClipper(),
-              child: Container(
-                height: 120.h,
-                color: Colors.white.withOpacity(0.15),
-              ),
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return ClipPath(
+                  clipper: _WaveClipper(_controller.value),
+                  child: Container(
+                    height: 120.h,
+                    color: Colors.white.withOpacity(0.15),
+                  ),
+                );
+              },
             ),
           ),
           Padding(
@@ -80,26 +107,37 @@ class ImpactScoreCard extends StatelessWidget {
 }
 
 class _WaveClipper extends CustomClipper<Path> {
+  final double animationValue;
+
+  _WaveClipper(this.animationValue);
+
   @override
   Path getClip(Size size) {
     var path = Path();
     path.lineTo(0, size.height * 0.8);
-    var firstControlPoint = Offset(size.width * 0.25, size.height);
-    var firstEndPoint = Offset(size.width * 0.5, size.height * 0.7);
+    
+    double x = animationValue * size.width;
+    
+    var firstControlPoint = Offset(size.width * 0.25 - (x * 0.1), size.height + (animationValue * 10));
+    var firstEndPoint = Offset(size.width * 0.5, size.height * 0.7 + (animationValue * 20));
+    
     path.quadraticBezierTo(
       firstControlPoint.dx,
       firstControlPoint.dy,
       firstEndPoint.dx,
       firstEndPoint.dy,
     );
-    var secondControlPoint = Offset(size.width * 0.75, size.height * 0.4);
+    
+    var secondControlPoint = Offset(size.width * 0.75 + (x * 0.1), size.height * 0.4 - (animationValue * 10));
     var secondEndPoint = Offset(size.width, size.height * 0.8);
+    
     path.quadraticBezierTo(
       secondControlPoint.dx,
       secondControlPoint.dy,
       secondEndPoint.dx,
       secondEndPoint.dy,
     );
+    
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
     path.close();
@@ -107,5 +145,5 @@ class _WaveClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(_WaveClipper oldClipper) => oldClipper.animationValue != animationValue;
 }

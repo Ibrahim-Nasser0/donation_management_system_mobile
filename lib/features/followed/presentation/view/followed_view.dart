@@ -1,4 +1,4 @@
-import 'package:donation_management_system_mobile/features/donations/presentation/view/widgets/donations_header.dart';
+import 'package:donation_management_system_mobile/core/shared/widgets/sanctuary_header.dart';
 import 'package:donation_management_system_mobile/features/followed/presentation/view/widgets/followed_card.dart';
 import 'package:donation_management_system_mobile/features/followed/presentation/view/widgets/followed_footer.dart';
 import 'package:donation_management_system_mobile/features/followed/presentation/view/widgets/followed_title.dart';
@@ -20,7 +20,7 @@ class FollowedView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const DonationsHeader(),
+                const SanctuaryHeader(),
                 Gap(24.h),
                 const FollowedTitle(),
                 Gap(32.h),

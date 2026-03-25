@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:donation_management_system_mobile/core/errors/failurs.dart';
+import 'package:donation_management_system_mobile/core/errors/failures.dart';
 import 'package:donation_management_system_mobile/core/utils/api_end_points.dart';
 
 class ApiService {
@@ -16,8 +16,8 @@ class ApiService {
 
       return response.data;
     } catch (e) {
-      if (e is DioError) {
-        throw ServerFailure.fromDioError(e);
+      if (e is DioException) {
+        throw ServerFailure.fromDioException(e);
       } else {
         throw ServerFailure(errMessage: e.toString());
       }

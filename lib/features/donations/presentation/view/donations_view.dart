@@ -1,4 +1,4 @@
-import 'package:donation_management_system_mobile/features/donations/presentation/view/widgets/donations_header.dart';
+import 'package:donation_management_system_mobile/core/shared/widgets/sanctuary_header.dart';
 import 'package:donation_management_system_mobile/features/donations/presentation/view/widgets/donations_history.dart';
 import 'package:donation_management_system_mobile/features/donations/presentation/view/widgets/donations_impact_summary.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class DonationsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF9FBFF),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -20,7 +20,7 @@ class DonationsView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const DonationsHeader(),
+                const SanctuaryHeader(),
                 Gap(24.h),
                 const DonationsImpactSummary(),
                 Gap(40.h),

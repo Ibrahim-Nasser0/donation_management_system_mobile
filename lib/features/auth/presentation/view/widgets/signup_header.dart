@@ -19,7 +19,7 @@ class SignupHeader extends StatelessWidget {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF2E7D6F).withOpacity(0.3),
+                color: Colors.white.withValues(alpha: 0.1),
                 blurRadius: 15,
                 offset: const Offset(0, 8),
               ),

@@ -72,7 +72,7 @@ class _StatCard extends StatelessWidget {
           Text(
             value,
             style: GoogleFonts.montserrat(
-              fontSize: 24.sp,
+              fontSize: 28.sp,
               fontWeight: FontWeight.bold,
               color: valueColor,
             ),

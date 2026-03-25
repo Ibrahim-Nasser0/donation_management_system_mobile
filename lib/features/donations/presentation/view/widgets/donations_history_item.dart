@@ -52,11 +52,11 @@ class DonationsHistoryItem extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: 24.h),
-                  padding: EdgeInsets.all(20.w),
+                  margin: EdgeInsets.only(bottom: 28.h),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                   decoration: BoxDecoration(
                     color: const Color(0xFFF1F4F8).withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(24.r),
+                    borderRadius: BorderRadius.circular(32.r),
                   ),
                   child: Row(
                     children: [

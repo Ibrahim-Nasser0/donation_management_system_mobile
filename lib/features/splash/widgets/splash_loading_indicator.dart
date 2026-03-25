@@ -38,7 +38,7 @@ class SplashLoadingIndicator extends StatelessWidget {
           style: GoogleFonts.montserrat(
             fontSize: 12.sp,
             fontWeight: FontWeight.w600,
-            color: AppColors.lightText.withOpacity(0.6),
+            color: AppColors.lightText.withValues(alpha: 0.6),
             letterSpacing: 2,
           ),
         ),

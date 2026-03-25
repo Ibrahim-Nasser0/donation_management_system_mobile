@@ -1,4 +1,3 @@
-import 'package:donation_management_system_mobile/features/auth/presentation/view/widgets/signup_action.dart';
 import 'package:donation_management_system_mobile/features/auth/presentation/view/widgets/signup_bottom_icons.dart';
 import 'package:donation_management_system_mobile/features/auth/presentation/view/widgets/signup_form.dart';
 import 'package:donation_management_system_mobile/features/auth/presentation/view/widgets/signup_header.dart';
@@ -31,8 +30,6 @@ class SignupView extends StatelessWidget {
                 child: Column(
                   children: [
                     const SignupForm(),
-                    Gap(40.h),
-                    const SignupAction(),
                   ],
                 ),
               ),
