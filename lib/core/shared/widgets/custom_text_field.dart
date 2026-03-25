@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomTextField extends StatelessWidget {
   final String? labelText;
   final String hintText;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool obscureText;
   final TextEditingController? controller;
@@ -16,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     this.labelText,
     required this.hintText,
+    this.prefixIcon,
     this.suffixIcon,
     this.obscureText = false,
     this.controller,
@@ -54,6 +56,7 @@ class CustomTextField extends StatelessWidget {
             ),
             fillColor: const Color(0xFFF0F2F5),
             filled: true,
+            prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             contentPadding: EdgeInsets.symmetric(
               horizontal: 20.w,
