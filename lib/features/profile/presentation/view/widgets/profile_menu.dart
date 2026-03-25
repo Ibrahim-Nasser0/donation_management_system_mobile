@@ -24,7 +24,9 @@ class ProfileMenu extends StatelessWidget {
         _ProfileMenuItem(
           icon: Icons.auto_awesome_rounded,
           title: 'My Impact',
-          onTap: () {},
+          onTap: () {
+            GoRouter.of(context).push(AppRouter.myImpactView);
+          },
         ),
         Gap(16.h),
         _ProfileMenuItem(
