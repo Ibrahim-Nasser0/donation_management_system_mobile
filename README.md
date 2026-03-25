@@ -6,9 +6,9 @@
 [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 [![BLoC](https://img.shields.io/badge/BLoC-State_Management-00B4D8?style=for-the-badge&logo=dart&logoColor=white)](https://bloclibrary.dev)
-[![Clean Arch](https://img.shields.io/badge/Clean_Architecture-Feature_Driven-4CAF50?style=for-the-badge)]()
+[![Clean Arch](https://img.shields.io/badge/Clean_Architecture-2_Layers-4CAF50?style=for-the-badge)]()
 
-> A high-performance, premium donation application built with **Feature-Driven Clean Architecture**, providing a seamless experience for donors to support urgent humanitarian and community cases.
+> A high-performance, premium donation application built with a **Pragmatic Clean Architecture** (Data & Presentation layers), providing a seamless experience for donors to support urgent humanitarian and community cases.
 
 **Note:** This repository contains the **Mobile Application** (intended for normal users/donors). There is a separate **Desktop Application** designed specifically for **Admins and Employees**.
 
@@ -33,16 +33,16 @@
 
 ## 🏗️ Architecture
 
-This project strictly follows **Feature-Driven Clean Architecture** to ensure a complete separation of concerns between application layers.
+This project follows a **Pragmatic 2-Layer Architecture** (Presentation & Data) to ensure a solid separation of concerns while avoiding the over-engineering often associated with a formal Domain layer for projects of this scale.
 
-### Why Clean Architecture?
+### Why this Architecture?
 
 | Principle | Details |
 |---|---|
-| **Independent of UI** | Business logic is decoupled from widgets and layout |
-| **Independent of Frameworks** | Core logic is written in pure Dart for maximum portability |
-| **Independent of Data Sources** | Data layer supports swapping Remote (Dio) and Local (Cache) easily |
-| **Highly Testable** | Components are isolated, making unit and widget testing straightforward |
+| **Reduced Boilerplate** | By merging domain logic into the data/presentation layers, we avoid redundant mapping code. |
+| **Separation of Concerns** | UI (Widgets/Cubit) is kept strictly separate from Data sourcing (API/Models). |
+| **Maintainability** | Features are isolated; modifying one feature doesn't impact others. |
+| **Development Speed** | Faster implementation cycle without sacrificing the ability to scale later. |
 
 ### Layer Diagram
 
@@ -56,28 +56,38 @@ This project strictly follows **Feature-Driven Clean Architecture** to ensure a 
 │    └─────────────┘      └───────┬────────┘      └────────────────┘   │
 │                                 │                                    │
 └─────────────────────────────────┼────────────────────────────────────┘
-                                  │  calls
+                                  │  calls repositories
 ┌─────────────────────────────────▼────────────────────────────────────┐
-│                           DOMAIN LAYER                               │
-│                                                                      │
-│    ┌─────────────┐      ┌────────────────┐      ┌────────────────┐   │
-│    │  Entities   │      │   Use Cases    │      │  Repository    │   │
-│    │  (Models)   │      │ (Business      │      │  Interfaces    │   │
-│    │             │      │   Logic)       │      │ (Abstractions) │   │
-│    └─────────────┘      └───────┬────────┘      └───────┬────────┘   │
-│                                 │                       │            │
-└─────────────────────────────────┼───────────────────────┼────────────┘
-                                  │  implemented by       │
-┌─────────────────────────────────▼───────────────────────▼────────────┐
-│                           DATA LAYER                                 │
+│                             DATA LAYER                               │
 │                                                                      │
 │    ┌─────────────┐      ┌────────────────┐      ┌────────────────┐   │
 │    │   Models    │      │  Repositories  │      │  Data Sources  │   │
-│    │  (fromJson/ │      │ (Impl. Domain  │      │ Remote (Dio)   │   │
-│    │   toJson)   │      │  Interfaces)   │      │ Local (Cache)  │   │
+│    │  (fromJson/ │      │ (Business      │      │ Remote (Dio)   │   │
+│    │   toJson)   │      │  Implement.)   │      │ Local (Cache)  │   │
 │    └─────────────┘      └────────────────┘      └────────────────┘   │
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
+```
+
+### Data Flow
+
+```
+  User Action
+      │
+      ▼
+  BLoC Event
+      │
+      ▼
+  Repository Implementation
+      │
+      ▼
+  Remote Data Source (Dio → REST API)
+      │
+      ▼
+  JSON Model (fromJson)
+      │
+      ▼
+  BLoC State ──────── UI Rebuild
 ```
 
 ---
