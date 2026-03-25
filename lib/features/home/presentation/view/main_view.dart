@@ -1,5 +1,6 @@
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/custom_bottom_navbar.dart';
 import 'package:donation_management_system_mobile/features/donations/presentation/view/donations_view.dart';
+import 'package:donation_management_system_mobile/features/followed/presentation/view/followed_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/profile_view.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class _MainViewState extends State<MainView> {
   final List<Widget> _screens = [
     const Center(child: Text('Home Screen')),
     const DonationsView(),
-    const Center(child: Text('Followed Screen')),
+    const FollowedView(),
     const ProfileView(),
   ];
 
