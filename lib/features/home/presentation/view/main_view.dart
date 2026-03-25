@@ -1,4 +1,5 @@
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/custom_bottom_navbar.dart';
+import 'package:donation_management_system_mobile/features/home/presentation/view/home_view.dart';
 import 'package:donation_management_system_mobile/features/donations/presentation/view/donations_view.dart';
 import 'package:donation_management_system_mobile/features/followed/presentation/view/followed_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/profile_view.dart';
@@ -16,7 +17,7 @@ class _MainViewState extends State<MainView> {
   late PageController _pageController;
 
   final List<Widget> _screens = [
-    const Center(child: Text('Home Screen')),
+    const HomeView(),
     const DonationsView(),
     const FollowedView(),
     const ProfileView(),
