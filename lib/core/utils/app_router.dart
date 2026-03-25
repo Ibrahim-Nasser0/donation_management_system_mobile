@@ -1,5 +1,6 @@
 import 'package:donation_management_system_mobile/features/auth/presentation/view/login_view.dart';
 import 'package:donation_management_system_mobile/features/auth/presentation/view/signup_view.dart';
+import 'package:donation_management_system_mobile/features/home/presentation/view/main_view.dart';
 import 'package:donation_management_system_mobile/features/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,21 +17,19 @@ abstract class AppRouter {
     routes: <RouteBase>[
       GoRoute(
         path: splashView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const SplashView();
-        },
+        builder: (BuildContext context, GoRouterState state) => const SplashView(),
       ),
       GoRoute(
         path: loginView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const LoginView();
-        },
+        builder: (BuildContext context, GoRouterState state) => const LoginView(),
       ),
       GoRoute(
         path: signupView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const SignupView();
-        },
+        builder: (BuildContext context, GoRouterState state) => const SignupView(),
+      ),
+      GoRoute(
+        path: homeView,
+        builder: (BuildContext context, GoRouterState state) => const MainView(),
       ),
     ],
   );
