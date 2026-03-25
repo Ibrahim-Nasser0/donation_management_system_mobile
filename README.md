@@ -1,17 +1,172 @@
-# donation_management_system_mobile
+<div align="center">
 
-A new Flutter project.
+# 🤝 Donation Management System
+### Premium Mobile App for Donors
 
-## Getting Started
+[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+[![BLoC](https://img.shields.io/badge/BLoC-State_Management-00B4D8?style=for-the-badge&logo=dart&logoColor=white)](https://bloclibrary.dev)
+[![Clean Arch](https://img.shields.io/badge/Clean_Architecture-Feature_Driven-4CAF50?style=for-the-badge)]()
 
-This project is a starting point for a Flutter application.
+> A high-performance, premium donation application built with **Feature-Driven Clean Architecture**, providing a seamless experience for donors to support urgent humanitarian and community cases.
 
-A few resources to get you started if this is your first Flutter project:
+**Note:** This repository contains the **Mobile Application** (intended for normal users/donors). There is a separate **Desktop Application** designed specifically for **Admins and Employees**.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+</div>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| 🔐 **Secure Authentication** | Full donor registration and login flow with input validation |
+| 🚨 **Urgent Cases** | Real-time highlights of cases requiring immediate financial support |
+| 📖 **Recent Stories** | A beautiful grid view showcasing success stories and ongoing community projects |
+| 📊 **Impact Tracking** | Gamified user profile with an "Impact Score" to visualize your contributions |
+| 📑 **Case Details** | In-depth case views with parallax scrolling and dynamic progress bars |
+| 💳 **Premium Payments** | Interactive credit card management and secure donation processing |
+| 🔔 **Follow & Notify** | Ability to follow specific cases and receive updates on their progress |
+| 📱 **Adaptive UI** | Pixel-perfect responsive design with shimmer loaders and micro-interactions |
+
+---
+
+## 🏗️ Architecture
+
+This project strictly follows **Feature-Driven Clean Architecture** to ensure a complete separation of concerns between application layers.
+
+### Why Clean Architecture?
+
+| Principle | Details |
+|---|---|
+| **Independent of UI** | Business logic is decoupled from widgets and layout |
+| **Independent of Frameworks** | Core logic is written in pure Dart for maximum portability |
+| **Independent of Data Sources** | Data layer supports swapping Remote (Dio) and Local (Cache) easily |
+| **Highly Testable** | Components are isolated, making unit and widget testing straightforward |
+
+### Layer Diagram
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                        PRESENTATION LAYER                            │
+│                                                                      │
+│    ┌─────────────┐      ┌────────────────┐      ┌────────────────┐   │
+│    │  Pages &    │ ───▶ │   BLoC/Cubit   │ ───▶│    States &    │   │
+│    │  Screens    │      │   + Events     │      │    Widgets     │   │
+│    └─────────────┘      └───────┬────────┘      └────────────────┘   │
+│                                 │                                    │
+└─────────────────────────────────┼────────────────────────────────────┘
+                                  │  calls
+┌─────────────────────────────────▼────────────────────────────────────┐
+│                           DOMAIN LAYER                               │
+│                                                                      │
+│    ┌─────────────┐      ┌────────────────┐      ┌────────────────┐   │
+│    │  Entities   │      │   Use Cases    │      │  Repository    │   │
+│    │  (Models)   │      │ (Business      │      │  Interfaces    │   │
+│    │             │      │   Logic)       │      │ (Abstractions) │   │
+│    └─────────────┘      └───────┬────────┘      └───────┬────────┘   │
+│                                 │                       │            │
+└─────────────────────────────────┼───────────────────────┼────────────┘
+                                  │  implemented by       │
+┌─────────────────────────────────▼───────────────────────▼────────────┐
+│                           DATA LAYER                                 │
+│                                                                      │
+│    ┌─────────────┐      ┌────────────────┐      ┌────────────────┐   │
+│    │   Models    │      │  Repositories  │      │  Data Sources  │   │
+│    │  (fromJson/ │      │ (Impl. Domain  │      │ Remote (Dio)   │   │
+│    │   toJson)   │      │  Interfaces)   │      │ Local (Cache)  │   │
+│    └─────────────┘      └────────────────┘      └────────────────┘   │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🛠️ Tech Stack
+
+### Core
+| Technology | Role |
+|---|---|
+| **Flutter 3.x** | Cross-platform UI framework |
+| **Dart** | Primary programming language |
+
+### State Management
+| Package | Usage |
+|---|---|
+| [`flutter_bloc`](https://pub.dev/packages/flutter_bloc) | Predictable state management using BLoC & Cubit |
+
+### Networking & API
+| Package | Usage |
+|---|---|
+| [`dio`](https://pub.dev/packages/dio) | HTTP client with interceptors and specialized error handling |
+
+### UI & UX (Premium Experience)
+| Package | Usage |
+|---|---|
+| [`animations`](https://pub.dev/packages/animations) | Material Design Motion system (FadeThrough, SharedAxis) |
+| [`lottie`](https://pub.dev/packages/lottie) | High-quality vector animations for success feedback |
+| [`shimmer`](https://pub.dev/packages/shimmer) | Skeleton loading screens for better perceived performance |
+| [`flutter_credit_card`](https://pub.dev/packages/flutter_credit_card) | Aesthetic interactive payment card UI |
+| [`flutter_screenutil`](https://pub.dev/packages/flutter_screenutil) | Responsive sizing across all mobile devices |
+
+---
+
+## 📁 Project Structure
+
+```
+lib/
+│
+├── core/
+│   ├── constant/               # App colors, themes, strings
+│   ├── shared/                 # Reusable widgets (CustomButton, ShimmerBox, etc.)
+│   ├── utils/                  # App Router, Dependency Injection, Helper functions
+│   └── network/                # Api Client setup
+│
+├── features/
+│   ├── splash/                 # Intro animations
+│   ├── auth/                   # Login & Registration
+│   ├── home/                   # Dashboard, Urgent Cases & Stories (Grid/List)
+│   ├── case_details/           # Parallax Case Views & Progress tracking
+│   ├── donations/              # User's donation history
+│   ├── payment/                # Credit Card management
+│   ├── profile/                # Impact Score & User settings
+│   └── followed/               # Cases followed by user
+│
+└── main.dart                   # Entry point
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK `>=3.0.0`
+- Android Studio or VS Code
+- A valid internet connection (for API calls)
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Ibrahim-nasser0/donation_management_system_mobile.git
+
+# 2. Navigate to the project
+cd donation_management_system_mobile
+
+# 3. Install dependencies
+flutter pub get
+
+# 4. Run the app
+flutter run
+```
+
+---
+
+<div align="center">
+
+Built with 💙 by [Ibrahim Nasser](https://github.com/Ibrahim-nasser0)
+
+[![GitHub](https://img.shields.io/badge/GitHub-Ibrahim--nasser0-181717?style=for-the-badge&logo=github)](https://github.com/Ibrahim-nasser0)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Ibrahim_Nasser-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/ibrahim-Nasser-mobile)
+
+</div>
