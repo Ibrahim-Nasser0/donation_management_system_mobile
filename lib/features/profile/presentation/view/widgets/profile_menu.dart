@@ -30,6 +30,14 @@ class ProfileMenu extends StatelessWidget {
         ),
         Gap(16.h),
         _ProfileMenuItem(
+          icon: Icons.credit_card_rounded,
+          title: 'Payment Methods',
+          onTap: () {
+            GoRouter.of(context).push(AppRouter.paymentMethodsView);
+          },
+        ),
+        Gap(16.h),
+        _ProfileMenuItem(
           icon: Icons.settings_outlined,
           title: 'Settings',
           onTap: () {},

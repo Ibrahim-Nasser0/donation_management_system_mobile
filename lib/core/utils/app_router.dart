@@ -3,6 +3,8 @@ import 'package:donation_management_system_mobile/features/auth/presentation/vie
 import 'package:donation_management_system_mobile/features/home/presentation/view/main_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/my_impact_view.dart';
+import 'package:donation_management_system_mobile/features/profile/presentation/view/payment_methods_view.dart';
+import 'package:donation_management_system_mobile/features/profile/presentation/view/add_payment_method_view.dart';
 import 'package:donation_management_system_mobile/features/splash/splash_view.dart';
 import 'package:donation_management_system_mobile/features/case_details/presentation/view/case_details_view.dart';
 import 'package:donation_management_system_mobile/features/payment/presentation/view/payment_view.dart';
@@ -20,6 +22,8 @@ abstract class AppRouter {
   static const String searchView = '/searchView';
   static const String caseDetailsView = '/caseDetailsView';
   static const String paymentView = '/paymentView';
+  static const String paymentMethodsView = '/paymentMethodsView';
+  static const String addPaymentMethodView = '/addPaymentMethodView';
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -54,6 +58,14 @@ abstract class AppRouter {
       GoRoute(
         path: paymentView,
         builder: (BuildContext context, GoRouterState state) => const PaymentView(),
+      ),
+      GoRoute(
+        path: paymentMethodsView,
+        builder: (BuildContext context, GoRouterState state) => const PaymentMethodsView(),
+      ),
+      GoRoute(
+        path: addPaymentMethodView,
+        builder: (BuildContext context, GoRouterState state) => const AddPaymentMethodView(),
       ),
     ],
   );
