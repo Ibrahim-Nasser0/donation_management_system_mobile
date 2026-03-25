@@ -1,22 +1,53 @@
 import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
-import 'package:donation_management_system_mobile/core/constant/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.widget});
-  final Widget widget;
+  final String text;
+  final VoidCallback onPressed;
+  final IconData? icon;
+  final double? height;
+
+  const CustomButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.icon,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Container(
-        alignment: .center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppSizes.borderRadius.r),
-          gradient: LinearGradient(colors: AppColors.primaryGradient),
+    return SizedBox(
+      width: double.infinity,
+      height: height ?? 56.h,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primaryGradient[0],
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.r),
+          ),
+          elevation: 2,
         ),
-        child:widget ,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              text,
+              style: GoogleFonts.montserrat(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            if (icon != null) ...[
+              SizedBox(width: 8.w),
+              Icon(icon, size: 20.sp),
+            ],
+          ],
+        ),
       ),
     );
   }

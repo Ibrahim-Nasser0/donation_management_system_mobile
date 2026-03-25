@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashLoadingIndicator extends StatelessWidget {
-  const SplashLoadingIndicator({super.key});
+  final double progress;
+  const SplashLoadingIndicator({super.key, this.progress = 0.3});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,9 @@ class SplashLoadingIndicator extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              Container(
-                width: 0.3.sw, // Arbitrary progress for static mockup
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                width: 0.8.sw * progress,
                 height: 4.h,
                 decoration: BoxDecoration(
                   color: AppColors.primaryGradient[0],
