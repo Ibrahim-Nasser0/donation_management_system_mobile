@@ -1,4 +1,5 @@
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/custom_bottom_navbar.dart';
+import 'package:donation_management_system_mobile/features/profile/presentation/view/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -15,7 +16,7 @@ class _MainViewState extends State<MainView> {
     const Center(child: Text('Home Screen')),
     const Center(child: Text('Donations Screen')),
     const Center(child: Text('Followed Screen')),
-    const Center(child: Text('Profile Screen')),
+    const ProfileView(),
   ];
 
   @override
