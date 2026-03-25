@@ -12,6 +12,8 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final int? maxLines;
+  final int? minLines;
 
   const CustomTextField({
     super.key,
@@ -22,6 +24,8 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.controller,
     this.keyboardType,
+    this.maxLines = 1,
+    this.minLines,
   });
 
   @override
@@ -44,6 +48,8 @@ class CustomTextField extends StatelessWidget {
           controller: controller,
           obscureText: obscureText,
           keyboardType: keyboardType,
+          maxLines: maxLines,
+          minLines: minLines,
           style: GoogleFonts.montserrat(
             fontSize: 14.sp,
             color: AppColors.headerText,
