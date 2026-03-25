@@ -1,6 +1,8 @@
 import 'package:donation_management_system_mobile/core/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:donation_management_system_mobile/core/utils/app_router.dart';
 
 class CaseBottomAction extends StatelessWidget {
   const CaseBottomAction({super.key});
@@ -21,7 +23,7 @@ class CaseBottomAction extends StatelessWidget {
       child: CustomButton(
         text: 'Donate Now',
         icon: Icons.volunteer_activism, // Heart/hand representation
-        onPressed: () {},
+        onPressed: () => context.push(AppRouter.paymentView),
       ),
     );
   }
