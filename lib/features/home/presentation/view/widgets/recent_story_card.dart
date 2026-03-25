@@ -4,6 +4,8 @@ import 'package:donation_management_system_mobile/core/shared/widgets/donation_p
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
+import 'package:donation_management_system_mobile/core/utils/app_router.dart';
 
 class RecentStoryCard extends StatelessWidget {
   final String? category;
@@ -31,8 +33,10 @@ class RecentStoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 24.h),
+    return GestureDetector(
+      onTap: () => context.push(AppRouter.caseDetailsView),
+      child: Container(
+        margin: EdgeInsets.only(bottom: 24.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.r),
@@ -109,6 +113,7 @@ class RecentStoryCard extends StatelessWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }

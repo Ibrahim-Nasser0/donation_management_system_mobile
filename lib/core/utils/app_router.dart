@@ -4,6 +4,7 @@ import 'package:donation_management_system_mobile/features/home/presentation/vie
 import 'package:donation_management_system_mobile/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/my_impact_view.dart';
 import 'package:donation_management_system_mobile/features/splash/splash_view.dart';
+import 'package:donation_management_system_mobile/features/case_details/presentation/view/case_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,6 +17,7 @@ abstract class AppRouter {
   static const String myImpactView = '/myImpactView';
   static const String bookDetailsView = '/bookDetailsView';
   static const String searchView = '/searchView';
+  static const String caseDetailsView = '/caseDetailsView';
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -42,6 +44,10 @@ abstract class AppRouter {
       GoRoute(
         path: myImpactView,
         builder: (BuildContext context, GoRouterState state) => const MyImpactView(),
+      ),
+      GoRoute(
+        path: caseDetailsView,
+        builder: (BuildContext context, GoRouterState state) => const CaseDetailsView(),
       ),
     ],
   );

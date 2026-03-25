@@ -4,6 +4,7 @@ import 'package:donation_management_system_mobile/features/home/presentation/vie
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/recent_stories_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -19,11 +20,11 @@ class HomeView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const HomeHeader(),
-              SizedBox(height: 24.h),
+              Gap(24.h),
               const UrgentCasesSection(),
-              SizedBox(height: 32.h),
+              Gap(32.h),
               const RecentStoriesSection(),
-              SizedBox(height: 32.h),
+              Gap(32.h),
             ],
           ),
         ),

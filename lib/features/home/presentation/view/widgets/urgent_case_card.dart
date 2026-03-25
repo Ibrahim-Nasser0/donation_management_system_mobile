@@ -4,14 +4,18 @@ import 'package:donation_management_system_mobile/core/shared/widgets/donation_p
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
+import 'package:donation_management_system_mobile/core/utils/app_router.dart';
 
 class UrgentCaseCard extends StatelessWidget {
   const UrgentCaseCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 280.w,
+    return GestureDetector(
+      onTap: () => context.push(AppRouter.caseDetailsView),
+      child: Container(
+        width: 280.w,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.r),
@@ -99,6 +103,7 @@ class UrgentCaseCard extends StatelessWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }
