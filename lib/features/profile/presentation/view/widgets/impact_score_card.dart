@@ -1,7 +1,8 @@
+import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
+import 'package:donation_management_system_mobile/core/constant/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ImpactScoreCard extends StatefulWidget {
   const ImpactScoreCard({super.key});
@@ -34,15 +35,18 @@ class _ImpactScoreCardState extends State<ImpactScoreCard> with SingleTickerProv
       width: double.infinity,
       height: 220.h,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF2E7D6F), Color(0xFF1B5E20)],
+          colors: [
+            AppColors.primaryColor,
+            AppColors.primaryGradient[1],
+          ],
         ),
         borderRadius: BorderRadius.circular(40.r),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF2E7D6F).withOpacity(0.3),
+            color: AppColors.primaryColor.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -61,7 +65,7 @@ class _ImpactScoreCardState extends State<ImpactScoreCard> with SingleTickerProv
                   clipper: _WaveClipper(_controller.value),
                   child: Container(
                     height: 120.h,
-                    color: Colors.white.withOpacity(0.15),
+                    color: Colors.white.withValues(alpha: 0.15),
                   ),
                 );
               },
@@ -74,27 +78,24 @@ class _ImpactScoreCardState extends State<ImpactScoreCard> with SingleTickerProv
               children: [
                 Text(
                   'TOTAL IMPACT SCORE',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 12.sp,
+                  style: AppStyles.font12LightText.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withValues(alpha: 0.7),
                     letterSpacing: 1,
                   ),
                 ),
                 Gap(12.h),
                 Text(
                   '1,084',
-                  style: GoogleFonts.montserrat(
+                  style: AppStyles.font20BoldHeader.copyWith(
                     fontSize: 56.sp,
-                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
                 Text(
                   'Points earned',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14.sp,
-                    color: Colors.white.withOpacity(0.8),
+                  style: AppStyles.font14RegularLight.copyWith(
+                    color: Colors.white.withValues(alpha: 0.8),
                   ),
                 ),
               ],

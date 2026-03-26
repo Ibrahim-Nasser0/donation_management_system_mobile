@@ -38,4 +38,16 @@ class AppStyles {
     fontWeight: FontWeight.w600,
     letterSpacing: 0.5,
   );
+
+  static TextStyle font10BoldGrey = GoogleFonts.montserrat(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.blueGrey[200],
+  );
+
+  static TextStyle font16BoldPrimary = GoogleFonts.montserrat(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primaryColor,
+  );
 }
