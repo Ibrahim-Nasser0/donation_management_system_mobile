@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final Color? backgroundColor;
   final Color? textColor;
+  final bool isLoading;
 
   const CustomButton({
     super.key,
@@ -20,41 +21,61 @@ class CustomButton extends StatelessWidget {
     this.height,
     this.backgroundColor,
     this.textColor,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn,
+      width: isLoading ? (height ?? 56.h) : double.infinity,
       height: height ?? 56.h,
       child: ElevatedButton(
-        onPressed: () {
-          HapticFeedback.lightImpact();
-          onPressed();
-        },
+        onPressed: isLoading
+            ? null
+            : () {
+                HapticFeedback.lightImpact();
+                onPressed();
+              },
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor ?? AppColors.primaryGradient[0],
           foregroundColor: textColor ?? Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.r),
           ),
-          elevation: 2,
+          elevation: isLoading ? 0 : 2,
+          padding: EdgeInsets.zero,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              text,
-              style: GoogleFonts.montserrat(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            if (icon != null) ...[
-              SizedBox(width: 8.w),
-              Icon(icon, size: 20.sp),
-            ],
-          ],
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: isLoading
+              ? SizedBox(
+                  key: const ValueKey('loading'),
+                  height: 24.h,
+                  width: 24.h,
+                  child: const CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2.5,
+                  ),
+                )
+              : Row(
+                  key: const ValueKey('content'),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      text,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    if (icon != null) ...[
+                      SizedBox(width: 8.w),
+                      Icon(icon, size: 20.sp),
+                    ],
+                  ],
+                ),
         ),
       ),
     );

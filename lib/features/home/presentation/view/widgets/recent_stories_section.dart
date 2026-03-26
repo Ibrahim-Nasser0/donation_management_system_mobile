@@ -1,58 +1,66 @@
-import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
-import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/recent_story_card.dart';
+import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/recent_story_grid_card.dart';
+import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/recent_story_grid_card_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RecentStoriesSection extends StatelessWidget {
-  const RecentStoriesSection({super.key});
+  final bool isLoading;
+
+  const RecentStoriesSection({
+    super.key,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Recent Stories',
-          style: GoogleFonts.montserrat(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-            color: AppColors.headerText,
-          ),
+    return SliverPadding(
+      padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 16.h, bottom: 32.h),
+      sliver: SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 16.h,
+          crossAxisSpacing: 16.w,
+          childAspectRatio: 0.85, 
         ),
-        SizedBox(height: 16.h),
-        const RecentStoryCard(
-          category: 'Empowerment',
-          title: 'Education for Every Girl',
-          description: 'Breaking the cycle of poverty by providing scholarships and mentoring for young women in technical fields.',
-          percentageText: '45% raised',
-          amountText: '\$45,000 / \$100,000',
-          percentage: 0.45,
-          buttonText: 'Support this Case',
-          buttonColor: Color(0xFF2E7D6F),
-          buttonTextColor: Colors.white,
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            if (isLoading) {
+              return const RecentStoryGridCardSkeleton();
+            }
+            
+            final stories = [
+              {
+                'title': 'Education for Every Girl',
+                'amountText': '\$45K / \$100K',
+                'percentage': 0.45,
+              },
+              {
+                'title': 'Stop Hunger Initiative',
+                'amountText': '\$10K / \$50K',
+                'percentage': 0.20,
+              },
+              {
+                'title': 'Community Health Clinic',
+                'amountText': '\$15K / \$20K',
+                'percentage': 0.75,
+              },
+              {
+                'title': 'Clean Water Access',
+                'amountText': '\$8K / \$10K',
+                'percentage': 0.80,
+              },
+            ];
+            
+            final story = stories[index];
+            return RecentStoryGridCard(
+              title: story['title'] as String,
+              amountText: story['amountText'] as String,
+              percentage: story['percentage'] as double,
+            );
+          },
+          childCount: isLoading ? 4 : 4,
         ),
-        const RecentStoryCard(
-          title: 'Stop Hunger Initiative',
-          description: 'Monthly food kits for families affected by the economic downturn.',
-          percentageText: '20% raised',
-          amountText: '\$10K / \$50K',
-          percentage: 0.20,
-          buttonText: 'Donate',
-          buttonColor: Color(0xFFE0E0E0),
-          buttonTextColor: Colors.black87,
-        ),
-        const RecentStoryCard(
-          title: 'Community Health Clinic',
-          description: 'Equipping a local clinic with essential diagnostic tools for early detection.',
-          percentageText: '75% raised',
-          amountText: '\$15K / \$20K',
-          percentage: 0.75,
-          buttonText: 'Donate',
-          buttonColor: Color(0xFFE0E0E0),
-          buttonTextColor: Colors.black87,
-        ),
-      ],
+      ),
     );
   }
 }

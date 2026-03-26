@@ -1,6 +1,7 @@
 import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
 import 'package:donation_management_system_mobile/core/constant/app_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -73,12 +74,26 @@ class _CustomTextFieldState extends State<CustomTextField> {
             prefixIcon: widget.prefixIcon,
             suffixIcon: widget.isPassword
                 ? IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                      color: AppColors.lightText.withValues(alpha: 0.6),
-                      size: 20.sp,
+                    icon: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 250),
+                      transitionBuilder: (child, animation) {
+                        return ScaleTransition(
+                          scale: animation,
+                          child: RotationTransition(
+                            turns: animation,
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: Icon(
+                        _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        key: ValueKey<bool>(_obscureText),
+                        color: AppColors.lightText.withValues(alpha: 0.6),
+                        size: 20.sp,
+                      ),
                     ),
                     onPressed: () {
+                      HapticFeedback.selectionClick();
                       setState(() {
                         _obscureText = !_obscureText;
                       });
