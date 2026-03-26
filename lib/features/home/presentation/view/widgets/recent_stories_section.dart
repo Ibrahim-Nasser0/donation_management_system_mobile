@@ -1,3 +1,4 @@
+import 'package:donation_management_system_mobile/core/shared/widgets/bouncy_button.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/recent_story_grid_card.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/recent_story_grid_card_skeleton.dart';
 import 'package:flutter/material.dart';
@@ -52,10 +53,13 @@ class RecentStoriesSection extends StatelessWidget {
             ];
             
             final story = stories[index];
-            return RecentStoryGridCard(
-              title: story['title'] as String,
-              amountText: story['amountText'] as String,
-              percentage: story['percentage'] as double,
+            return BouncyButton(
+              onPressed: () {},
+              child: RecentStoryGridCard(
+                title: story['title'] as String,
+                amountText: story['amountText'] as String,
+                percentage: story['percentage'] as double,
+              ),
             );
           },
           childCount: isLoading ? 4 : 4,

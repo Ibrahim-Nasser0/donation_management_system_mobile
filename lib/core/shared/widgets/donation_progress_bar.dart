@@ -1,7 +1,7 @@
 import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
+import 'package:donation_management_system_mobile/core/constant/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DonationProgressBar extends StatelessWidget {
   final String percentageText;
@@ -25,30 +25,44 @@ class DonationProgressBar extends StatelessWidget {
           children: [
             Text(
               percentageText,
-              style: GoogleFonts.montserrat(
-                fontSize: 10.sp,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xFF2E7D6F),
-              ),
+              style: AppStyles.font12SemiBoldPrimary,
             ),
             Text(
               amountText,
-              style: GoogleFonts.montserrat(
-                fontSize: 10.sp,
-                color: AppColors.headerText,
-              ),
+              style: AppStyles.font12LightText,
             ),
           ],
         ),
         SizedBox(height: 8.h),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4.r),
-          child: LinearProgressIndicator(
-            value: percentage,
-            backgroundColor: const Color(0xFFE0E0E0),
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF2E7D6F)),
-            minHeight: 6.h,
-          ),
+        Stack(
+          children: [
+            Container(
+              height: 8.h,
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(4.r),
+              ),
+            ),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeOutCubic,
+              height: 8.h,
+              width: percentage.clamp(0.0, 1.0) * (MediaQuery.of(context).size.width - 80.w), // Approximate width adjustment
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: AppColors.primaryGradient,
+                ),
+                borderRadius: BorderRadius.circular(4.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryColor.withValues(alpha: 0.2),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     );

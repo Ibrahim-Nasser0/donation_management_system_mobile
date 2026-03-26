@@ -1,19 +1,19 @@
-import 'package:donation_management_system_mobile/core/shared/widgets/custom_bottom_navbar.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/home_view.dart';
 import 'package:donation_management_system_mobile/features/donations/presentation/view/donations_view.dart';
 import 'package:donation_management_system_mobile/features/followed/presentation/view/followed_view.dart';
+import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/custom_bottom_navbar.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class NavigationView extends StatefulWidget {
+  const NavigationView({super.key});
 
   @override
-  State<MainView> createState() => _MainViewState();
+  State<NavigationView> createState() => _NavigationViewState();
 }
 
-class _MainViewState extends State<MainView> {
+class _NavigationViewState extends State<NavigationView> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
@@ -22,7 +22,6 @@ class _MainViewState extends State<MainView> {
     const FollowedView(),
     const ProfileView(),
   ];
-
 
   @override
   Widget build(BuildContext context) {

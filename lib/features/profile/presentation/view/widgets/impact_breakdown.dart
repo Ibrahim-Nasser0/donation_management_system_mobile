@@ -1,8 +1,7 @@
-import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
+import 'package:donation_management_system_mobile/core/constant/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ImpactBreakdown extends StatelessWidget {
   const ImpactBreakdown({super.key});
@@ -17,21 +16,13 @@ class ImpactBreakdown extends StatelessWidget {
           children: [
             Text(
               'Breakdown',
-              style: GoogleFonts.montserrat(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.headerText,
-              ),
+              style: AppStyles.font20BoldHeader,
             ),
             TextButton(
               onPressed: () {},
               child: Text(
                 'View full report',
-                style: GoogleFonts.montserrat(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF2E7D6F),
-                ),
+                style: AppStyles.font12SemiBoldPrimary,
               ),
             ),
           ],
@@ -97,7 +88,7 @@ class _BreakdownItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(30.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -111,7 +102,7 @@ class _BreakdownItem extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8.w),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(icon, color: color, size: 20.sp),
@@ -119,10 +110,7 @@ class _BreakdownItem extends StatelessWidget {
               const Spacer(),
               Text(
                 category,
-                style: GoogleFonts.montserrat(
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey[200],
+                style: AppStyles.font10BoldGrey.copyWith(
                   letterSpacing: 1,
                 ),
               ),
@@ -130,9 +118,7 @@ class _BreakdownItem extends StatelessWidget {
                 Gap(8.w),
                 Text(
                   'Top Category',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.bold,
+                  style: AppStyles.font10BoldGrey.copyWith(
                     color: Colors.orange[800],
                   ),
                 ),
@@ -142,18 +128,13 @@ class _BreakdownItem extends StatelessWidget {
           Gap(16.h),
           Text(
             title,
-            style: GoogleFonts.montserrat(
+            style: AppStyles.font20BoldHeader.copyWith(
               fontSize: 32.sp,
-              fontWeight: FontWeight.bold,
-              color: AppColors.headerText,
             ),
           ),
           Text(
             subtitle,
-            style: GoogleFonts.montserrat(
-              fontSize: 14.sp,
-              color: AppColors.lightText,
-            ),
+            style: AppStyles.font14RegularLight,
           ),
           Gap(12.h),
           ClipRRect(

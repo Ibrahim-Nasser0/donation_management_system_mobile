@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
-import 'package:donation_management_system_mobile/core/utils/app_router.dart';
+import 'package:donation_management_system_mobile/core/utils/navigation/app_router.dart';
 
 class FollowedCard extends StatelessWidget {
   final String title;

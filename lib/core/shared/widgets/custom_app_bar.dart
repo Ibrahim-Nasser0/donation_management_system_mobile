@@ -1,6 +1,6 @@
 import 'package:donation_management_system_mobile/core/constant/app_assets.dart';
 import 'package:donation_management_system_mobile/core/constant/app_sizes.dart';
-import 'package:donation_management_system_mobile/core/utils/app_router.dart';
+import 'package:donation_management_system_mobile/core/utils/navigation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

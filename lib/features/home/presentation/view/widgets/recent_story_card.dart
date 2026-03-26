@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
-import 'package:donation_management_system_mobile/core/utils/app_router.dart';
+import 'package:donation_management_system_mobile/core/utils/navigation/app_router.dart';
 import 'package:donation_management_system_mobile/core/shared/widgets/pressable_card.dart';
 
 class RecentStoryCard extends StatelessWidget {
