@@ -1,4 +1,4 @@
-import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/custom_bottom_navbar.dart';
+import 'package:donation_management_system_mobile/core/shared/widgets/custom_bottom_navbar.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/home_view.dart';
 import 'package:donation_management_system_mobile/features/donations/presentation/view/donations_view.dart';
 import 'package:donation_management_system_mobile/features/followed/presentation/view/followed_view.dart';

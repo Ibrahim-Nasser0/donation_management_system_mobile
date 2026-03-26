@@ -1,8 +1,8 @@
 import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
+import 'package:donation_management_system_mobile/core/constant/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -65,9 +65,8 @@ class CustomButton extends StatelessWidget {
                   children: [
                     Text(
                       text,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+                      style: AppStyles.font16SemiBoldHeader.copyWith(
+                        color: textColor ?? Colors.white,
                       ),
                     ),
                     if (icon != null) ...[

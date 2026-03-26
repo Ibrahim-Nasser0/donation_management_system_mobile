@@ -29,44 +29,88 @@ abstract class AppRouter {
     routes: <RouteBase>[
       GoRoute(
         path: splashView,
-        builder: (BuildContext context, GoRouterState state) => const SplashView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const SplashView(),
+        ),
       ),
       GoRoute(
         path: loginView,
-        builder: (BuildContext context, GoRouterState state) => const LoginView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const LoginView(),
+        ),
       ),
       GoRoute(
         path: signupView,
-        builder: (BuildContext context, GoRouterState state) => const SignupView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const SignupView(),
+        ),
       ),
       GoRoute(
         path: homeView,
-        builder: (BuildContext context, GoRouterState state) => const MainView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const MainView(),
+        ),
       ),
       GoRoute(
         path: editProfileView,
-        builder: (BuildContext context, GoRouterState state) => const EditProfileView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const EditProfileView(),
+        ),
       ),
       GoRoute(
         path: myImpactView,
-        builder: (BuildContext context, GoRouterState state) => const MyImpactView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const MyImpactView(),
+        ),
       ),
       GoRoute(
         path: caseDetailsView,
-        builder: (BuildContext context, GoRouterState state) => const CaseDetailsView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const CaseDetailsView(),
+        ),
       ),
       GoRoute(
         path: paymentView,
-        builder: (BuildContext context, GoRouterState state) => const PaymentView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const PaymentView(),
+        ),
       ),
       GoRoute(
         path: paymentMethodsView,
-        builder: (BuildContext context, GoRouterState state) => const PaymentMethodsView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const PaymentMethodsView(),
+        ),
       ),
       GoRoute(
         path: addPaymentMethodView,
-        builder: (BuildContext context, GoRouterState state) => const AddPaymentMethodView(),
+        pageBuilder: (context, state) => _buildCustomTransition(
+          state,
+          const AddPaymentMethodView(),
+        ),
       ),
     ],
   );
+
+  static CustomTransitionPage _buildCustomTransition(
+      GoRouterState state, Widget child) {
+    return CustomTransitionPage(
+      key: state.pageKey,
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+          child: child,
+        );
+      },
+    );
+  }
 }

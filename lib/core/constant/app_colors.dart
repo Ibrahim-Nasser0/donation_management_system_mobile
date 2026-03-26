@@ -9,6 +9,8 @@ class AppColors {
   static const Color lightText = Color(0xff3F4946);
   
   
+  static const Color primaryColor = Color(0xff066456);
+  
   static const List<Color> primaryGradient = [
     Color(0xff066456),
     Color(0xff2E7D6E),

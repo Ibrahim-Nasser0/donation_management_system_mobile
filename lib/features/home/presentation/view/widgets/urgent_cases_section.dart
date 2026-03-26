@@ -1,3 +1,4 @@
+import 'package:donation_management_system_mobile/core/shared/widgets/bouncy_button.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/urgent_case_card.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/urgent_case_card_skeleton.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,10 @@ class UrgentCasesSection extends StatelessWidget {
           if (isLoading) {
             return const UrgentCaseCardSkeleton();
           }
-          return const UrgentCaseCard();
+          return BouncyButton(
+            onPressed: () {},
+            child: const UrgentCaseCard(),
+          );
         },
       ),
     );

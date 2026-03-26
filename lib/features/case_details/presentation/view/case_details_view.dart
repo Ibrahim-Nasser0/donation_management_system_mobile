@@ -10,15 +10,47 @@ import 'package:donation_management_system_mobile/features/case_details/presenta
 import 'package:donation_management_system_mobile/features/case_details/presentation/view/widgets/recent_supporters_card.dart';
 import 'package:flutter/material.dart';
 
-class CaseDetailsView extends StatelessWidget {
+class CaseDetailsView extends StatefulWidget {
   const CaseDetailsView({super.key});
+
+  @override
+  State<CaseDetailsView> createState() => _CaseDetailsViewState();
+}
+
+class _CaseDetailsViewState extends State<CaseDetailsView> {
+  late ScrollController _scrollController;
+  bool _isStickyVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    // Show sticky button after scrolling down 200 units
+    if (_scrollController.offset > 200 && !_isStickyVisible) {
+      setState(() => _isStickyVisible = true);
+    } else if (_scrollController.offset <= 200 && _isStickyVisible) {
+      setState(() => _isStickyVisible = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: const CustomScrollView(
-        slivers: [
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: const [
           CaseDetailsAppBar(),
           CaseHeroSection(),
           CaseTitleSection(
@@ -41,9 +73,15 @@ class CaseDetailsView extends StatelessWidget {
           ),
           FundingStatusCard(),
           RecentSupportersCard(),
+          // Spacer for bottom action
+          SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],
       ),
-      bottomNavigationBar: const CaseBottomAction(),
+      bottomNavigationBar: AnimatedSlide(
+        duration: const Duration(milliseconds: 300),
+        offset: _isStickyVisible ? Offset.zero : const Offset(0, 1),
+        child: const CaseBottomAction(),
+      ),
     );
   }
 }
