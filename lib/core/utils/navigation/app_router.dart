@@ -1,6 +1,6 @@
 import 'package:donation_management_system_mobile/features/auth/presentation/view/login_view.dart';
 import 'package:donation_management_system_mobile/features/auth/presentation/view/signup_view.dart';
-import 'package:donation_management_system_mobile/features/home/presentation/view/main_view.dart';
+import 'package:donation_management_system_mobile/core/utils/navigation/view/navigation_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/my_impact_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/payment_methods_view.dart';
@@ -52,7 +52,7 @@ abstract class AppRouter {
         path: homeView,
         pageBuilder: (context, state) => _buildCustomTransition(
           state,
-          const MainView(),
+          const NavigationView(),
         ),
       ),
       GoRoute(

@@ -1,4 +1,4 @@
-import 'package:donation_management_system_mobile/core/utils/app_router.dart';
+import 'package:donation_management_system_mobile/core/utils/navigation/app_router.dart';
 import 'package:donation_management_system_mobile/features/splash/widgets/splash_background.dart';
 import 'package:donation_management_system_mobile/features/splash/widgets/splash_loading_indicator.dart';
 import 'package:donation_management_system_mobile/features/splash/widgets/splash_logo.dart';
