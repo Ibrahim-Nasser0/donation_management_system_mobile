@@ -14,6 +14,7 @@ class FollowedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF9FBFF),
       body: SafeArea(
+        bottom: false,
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -26,7 +27,8 @@ class FollowedView extends StatelessWidget {
                 Gap(32.h),
                 const FollowedCard(
                   title: 'Education for Every Girl',
-                  description: 'Breaking the cycle of poverty by providing quality primary education and school supplies to rural communities in East Africa.',
+                  description:
+                      'Breaking the cycle of poverty by providing quality primary education and school supplies to rural communities in East Africa.',
                   fundedInfo: '78% FUNDED',
                   progress: 0.78,
                   amount: '\$14,200',
@@ -36,7 +38,8 @@ class FollowedView extends StatelessWidget {
                 ),
                 const FollowedCard(
                   title: 'Clean Water for Amara',
-                  description: 'Constructing sustainable deep-well water systems to eliminate water-borne diseases for 500 families in our base region.',
+                  description:
+                      'Constructing sustainable deep-well water systems to eliminate water-borne diseases for 500 families in our base region.',
                   fundedInfo: '42% FUNDED',
                   progress: 0.42,
                   amount: '\$8,400',

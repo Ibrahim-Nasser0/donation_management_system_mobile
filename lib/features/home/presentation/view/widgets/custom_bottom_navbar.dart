@@ -1,9 +1,7 @@
 import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
-import 'package:donation_management_system_mobile/core/constant/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomBottomNavbar extends StatelessWidget {
@@ -19,50 +17,58 @@ class CustomBottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90.h,
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.padding.w),
+      height: 100.h,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.r),
-          topRight: Radius.circular(30.r),
-        ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryGradient[0].withValues(alpha: 0.1),
-            blurRadius: 10,
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 20,
             offset: const Offset(0, -5),
           ),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _NavbarItem(
-            label: 'HOME',
-            icon: selectedIndex == 0 ? Icons.home_rounded : Icons.home_outlined,
-            isSelected: selectedIndex == 0,
-            onTap: () => onItemSelected(0),
+      child: Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(40.r),
+            border: Border.all(color: Colors.grey[100]!, width: 1.5),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.03),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
-          _NavbarItem(
-            label: 'DONATIONS',
-            icon: selectedIndex == 1 ? Icons.volunteer_activism : Icons.volunteer_activism_outlined,
-            isSelected: selectedIndex == 1,
-            onTap: () => onItemSelected(1),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _NavbarItem(
+                label: 'Home',
+                icon: Icons.home_rounded,
+                isSelected: selectedIndex == 0,
+                onTap: () => onItemSelected(0),
+              ),
+              _NavbarItem(
+                label: 'Followed',
+                icon: Icons.bookmark_rounded,
+                isSelected: selectedIndex == 1,
+                onTap: () => onItemSelected(1),
+              ),
+              _NavbarItem(
+                label: 'Profile',
+                icon: Icons.person_rounded,
+                isSelected: selectedIndex == 2,
+                onTap: () => onItemSelected(2),
+              ),
+            ],
           ),
-          _NavbarItem(
-            label: 'FOLLOWED',
-            icon: selectedIndex == 2 ? Icons.bookmark_rounded : Icons.bookmark_outline_rounded,
-            isSelected: selectedIndex == 2,
-            onTap: () => onItemSelected(2),
-          ),
-          _NavbarItem(
-            label: 'PROFILE',
-            icon: selectedIndex == 3 ? Icons.person_rounded : Icons.person_outline_rounded,
-            isSelected: selectedIndex == 3,
-            onTap: () => onItemSelected(3),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -85,30 +91,43 @@ class _NavbarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        HapticFeedback.selectionClick();
+        HapticFeedback.lightImpact();
         onTap();
       },
       behavior: HitTestBehavior.opaque,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.h),
-        child: Column(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeOutCubic,
+        padding: EdgeInsets.symmetric(
+          horizontal: isSelected ? 20.w : 15.w,
+          vertical: 10.h,
+        ),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppColors.primaryColor.withValues(alpha: 0.12)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(30.r),
+        ),
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
-              color: isSelected ? AppColors.primaryGradient[0] : Colors.blueGrey[200],
-              size: 28.sp,
+              color: isSelected ? AppColors.primaryColor : Colors.blueGrey[200],
+              size: 24.sp,
             ),
-            Gap(4.h),
-            Text(
-              label,
-              style: GoogleFonts.montserrat(
-                fontSize: 10.sp,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
-                color: isSelected ? AppColors.primaryGradient[0] : Colors.blueGrey[200],
-                letterSpacing: 0.5,
+            if (isSelected) ...[
+              SizedBox(width: 8.w),
+              Text(
+                label,
+                style: GoogleFonts.montserrat(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                  letterSpacing: 0.5,
+                ),
               ),
-            ),
+            ],
           ],
         ),
       ),

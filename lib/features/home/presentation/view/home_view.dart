@@ -41,10 +41,11 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      body: SafeArea(
-        child: CustomScrollView(
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        body: CustomScrollView(
           controller: _scrollController,
           physics: const BouncingScrollPhysics(),
           slivers: [
@@ -55,7 +56,10 @@ class _HomeViewState extends State<HomeView> {
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 expandedTitleScale: 1.2,
-                titlePadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+                titlePadding: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                  vertical: 16.h,
+                ),
                 title: Text(
                   'The Curated Sanctuary',
                   style: AppStyles.font16SemiBoldHeader.copyWith(
@@ -64,21 +68,32 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 background: Container(
                   color: AppColors.backgroundColor,
-                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 16.h,
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CircleAvatar(
                         radius: 20.r,
-                        backgroundColor: AppColors.primaryColor.withValues(alpha: 0.1),
-                        child: Icon(Icons.person,
-                            color: AppColors.primaryColor, size: 24.sp),
+                        backgroundColor: AppColors.primaryColor.withValues(
+                          alpha: 0.1,
+                        ),
+                        child: Icon(
+                          Icons.person,
+                          color: AppColors.primaryColor,
+                          size: 24.sp,
+                        ),
                       ),
                       const Spacer(),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.search,
-                            color: AppColors.headerText, size: 24.sp),
+                        icon: Icon(
+                          Icons.search,
+                          color: AppColors.headerText,
+                          size: 24.sp,
+                        ),
                       ),
                     ],
                   ),
@@ -97,11 +112,8 @@ class _HomeViewState extends State<HomeView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(
-                          'Urgent Cases',
-                          style: AppStyles.font20BoldHeader,
-                        ),
-                        SizedBox(height: 4.h),
+                        Text('Urgent Cases', style: AppStyles.font20BoldHeader),
+                        Gap(4.h),
                         Text(
                           'Immediate support needed.',
                           style: AppStyles.font12LightText,
@@ -123,9 +135,7 @@ class _HomeViewState extends State<HomeView> {
             SliverToBoxAdapter(
               child: UrgentCasesSection(isLoading: _isLoading),
             ),
-            SliverToBoxAdapter(
-              child: Gap(16.h),
-            ),
+            SliverGap(16.h),
             SliverPersistentHeader(
               pinned: true,
               delegate: SectionHeaderDelegate(
@@ -137,6 +147,8 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             RecentStoriesSection(isLoading: _isLoading),
+
+            SliverGap(160.h),
           ],
         ),
       ),

@@ -1,8 +1,8 @@
-import 'package:donation_management_system_mobile/core/utils/navigation/view/custom_bottom_navbar.dart';
+import 'package:donation_management_system_mobile/core/utils/navigation/widgets/custom_bottom_navbar.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/home_view.dart';
-import 'package:donation_management_system_mobile/features/donations/presentation/view/donations_view.dart';
 import 'package:donation_management_system_mobile/features/followed/presentation/view/followed_view.dart';
 import 'package:donation_management_system_mobile/features/profile/presentation/view/profile_view.dart';
+import 'package:donation_management_system_mobile/core/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
@@ -18,28 +18,29 @@ class _MainViewState extends State<MainView> {
 
   final List<Widget> _screens = [
     const HomeView(),
-    const DonationsView(),
     const FollowedView(),
     const ProfileView(),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      extendBody: true,
       body: PageTransitionSwitcher(
         duration: const Duration(milliseconds: 300),
-        transitionBuilder: (
-          Widget child,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-        ) {
-          return FadeThroughTransition(
-            animation: animation,
-            secondaryAnimation: secondaryAnimation,
-            child: child,
-          );
-        },
+        transitionBuilder:
+            (
+              Widget child,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) {
+              return FadeThroughTransition(
+                animation: animation,
+                secondaryAnimation: secondaryAnimation,
+                child: child,
+              );
+            },
         child: _screens[_currentIndex],
       ),
       bottomNavigationBar: CustomBottomNavbar(

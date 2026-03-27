@@ -12,35 +12,37 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF9FBFF),
-      appBar: AppBar(
-        title: Text(
-          'Profile',
-          style: GoogleFonts.montserrat(
-            color: const Color(0xFF2E7D6F),
-            fontWeight: FontWeight.bold,
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Profile',
+            style: GoogleFonts.montserrat(
+              color: const Color(0xFF2E7D6F),
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: false,
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: false,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            children: [
-              Gap(20.h),
-              const ProfileHeader(),
-              Gap(40.h),
-              const ProfileStats(),
-              Gap(30.h),
-              const ProfileMenu(),
-              Gap(40.h),
-              const LogoutButton(),
-              Gap(40.h),
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Column(
+              children: [
+                Gap(20.h),
+                const ProfileHeader(),
+                Gap(40.h),
+                const ProfileStats(),
+                Gap(30.h),
+                const ProfileMenu(),
+                Gap(40.h),
+                const LogoutButton(),
+                Gap(160.h),
+              ],
+            ),
           ),
         ),
       ),
