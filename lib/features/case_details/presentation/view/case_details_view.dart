@@ -17,19 +17,24 @@ class CaseDetailsView extends StatefulWidget {
   State<CaseDetailsView> createState() => _CaseDetailsViewState();
 }
 
-class _CaseDetailsViewState extends State<CaseDetailsView> {
+class _CaseDetailsViewState extends State<CaseDetailsView>
+    with TickerProviderStateMixin {
   late ScrollController _scrollController;
   bool _isStickyVisible = false;
+  late AnimationController _fadeController;
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
+    _fadeController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..forward();
   }
 
   void _scrollListener() {
-    // Show sticky button after scrolling down 200 units
     if (_scrollController.offset > 200 && !_isStickyVisible) {
       setState(() => _isStickyVisible = true);
     } else if (_scrollController.offset <= 200 && _isStickyVisible) {
@@ -41,7 +46,25 @@ class _CaseDetailsViewState extends State<CaseDetailsView> {
   void dispose() {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
+    _fadeController.dispose();
     super.dispose();
+  }
+
+  Widget _buildAnimatedSliver(Widget sliver, int index) {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeOutQuart,
+      tween: Tween(begin: 0.0, end: 1.0),
+      builder: (context, value, child) {
+        return SliverOpacity(
+          opacity: value,
+          sliver: SliverPadding(
+            padding: EdgeInsets.only(top: 20 * (1 - value)),
+            sliver: sliver,
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -50,36 +73,49 @@ class _CaseDetailsViewState extends State<CaseDetailsView> {
       backgroundColor: AppColors.backgroundColor,
       body: CustomScrollView(
         controller: _scrollController,
-        slivers: const [
-          CaseDetailsAppBar(),
-          CaseHeroSection(),
-          CaseTitleSection(
-            title:
-                'Empowering the Next Generation: A New Learning Center for Hope Valley',
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          const CaseDetailsAppBar(),
+          const CaseHeroSection(),
+          _buildAnimatedSliver(
+            const CaseTitleSection(
+              title:
+                  'Empowering the Next Generation: A New Learning Center for Hope Valley',
+            ),
+            1,
           ),
-          CaseStatsRow(),
-          CaseDescriptionText(
-            text:
-                'In the heart of Hope Valley, education remains the only bridge to a brighter future. Currently, over 400 children share a single-room facility that lacks basic electricity and clean water.\n\nOur mission is to construct a modern, solar-powered learning sanctuary equipped with a digital library, three spacious classrooms, and a dedicated community space for evening vocational training.\n\nBy contributing today, you aren\'t just buying bricks and mortar; you are investing in the potential of every child who walks through these doors. Our goal of £85,000 will cover all construction costs, the installation of a sustainable well, and the first year of salaries for specialized local teachers.',
+          _buildAnimatedSliver(const CaseStatsRow(), 2),
+          _buildAnimatedSliver(
+            const CaseDescriptionText(
+              text:
+                  'In the heart of Hope Valley, education remains the only bridge to a brighter future. Currently, over 400 children share a single-room facility that lacks basic electricity and clean water.\n\nOur mission is to construct a modern, solar-powered learning sanctuary equipped with a digital library, three spacious classrooms, and a dedicated community space for evening vocational training.\n\nBy contributing today, you aren\'t just buying bricks and mortar; you are investing in the potential of every child who walks through these doors. Our goal of £85,000 will cover all construction costs, the installation of a sustainable well, and the first year of salaries for specialized local teachers.',
+            ),
+            3,
           ),
-          CaseQuoteBlock(
-            quote:
-                'When we give children the space to dream, they build the future we all want to live in.',
-            author: 'Dr. Sarah Jenkins, Project Lead',
+          _buildAnimatedSliver(
+            const CaseQuoteBlock(
+              quote:
+                  'When we give children the space to dream, they build the future we all want to live in.',
+              author: 'Dr. Sarah Jenkins, Project Lead',
+            ),
+            4,
           ),
-          CaseDescriptionText(
-            text:
-                'This sanctuary will also serve as a hub for the local community, providing health workshops and literacy classes for adults during the weekends. We have already secured the land and the necessary permits—your support is the final piece of this transformative puzzle.',
+          _buildAnimatedSliver(
+            const CaseDescriptionText(
+              text:
+                  'This sanctuary will also serve as a hub for the local community, providing health workshops and literacy classes for adults during the weekends. We have already secured the land and the necessary permits—your support is the final piece of this transformative puzzle.',
+            ),
+            5,
           ),
-          FundingStatusCard(),
-          RecentSupportersCard(),
-          // Spacer for bottom action
-          SliverToBoxAdapter(child: SizedBox(height: 100)),
+          _buildAnimatedSliver(const FundingStatusCard(), 6),
+          _buildAnimatedSliver(const RecentSupportersCard(), 7),
+          const SliverToBoxAdapter(child: SizedBox(height: 120)),
         ],
       ),
       bottomNavigationBar: AnimatedSlide(
-        duration: const Duration(milliseconds: 300),
-        offset: _isStickyVisible ? Offset.zero : const Offset(0, 1),
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeOutBack,
+        offset: _isStickyVisible ? Offset.zero : const Offset(0, 1.2),
         child: const CaseBottomAction(),
       ),
     );

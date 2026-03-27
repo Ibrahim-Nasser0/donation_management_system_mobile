@@ -16,35 +16,25 @@ class CustomBottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 20,
-            offset: const Offset(0, -5),
-          ),
-        ],
-      ),
-      child: Center(
+    return Material(
+      color: Colors.transparent,
+      elevation: 0,
+      child: Padding(
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 20.h),
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+          height: 70.h,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(40.r),
-            border: Border.all(color: Colors.grey[100]!, width: 1.5),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.03),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 30,
+                offset: const Offset(0, 10),
               ),
             ],
           ),
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -96,10 +86,10 @@ class _NavbarItem extends StatelessWidget {
       },
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeOutCubic,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.elasticOut,
         padding: EdgeInsets.symmetric(
-          horizontal: isSelected ? 20.w : 15.w,
+          horizontal: isSelected ? 22.w : 15.w,
           vertical: 10.h,
         ),
         decoration: BoxDecoration(
@@ -114,7 +104,7 @@ class _NavbarItem extends StatelessWidget {
             Icon(
               icon,
               color: isSelected ? AppColors.primaryColor : Colors.blueGrey[200],
-              size: 24.sp,
+              size: 26.sp,
             ),
             if (isSelected) ...[
               SizedBox(width: 8.w),
