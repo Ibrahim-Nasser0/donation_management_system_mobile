@@ -27,10 +27,14 @@ class _BouncyButtonState extends State<BouncyButton>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 150),
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.92).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOutBack,
+        reverseCurve: Curves.easeInCirc,
+      ),
     );
   }
 
@@ -44,7 +48,7 @@ class _BouncyButtonState extends State<BouncyButton>
     if (widget.onPressed != null) {
       _controller.forward();
       if (widget.enableHaptic) {
-        HapticFeedback.lightImpact();
+        HapticFeedback.mediumImpact();
       }
     }
   }

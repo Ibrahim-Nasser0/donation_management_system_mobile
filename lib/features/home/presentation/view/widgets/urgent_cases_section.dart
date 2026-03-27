@@ -15,7 +15,7 @@ class UrgentCasesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 380.h,
+      height: 420.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: 3, 

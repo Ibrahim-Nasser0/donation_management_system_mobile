@@ -2,7 +2,6 @@ import 'package:donation_management_system_mobile/core/constant/app_colors.dart'
 import 'package:donation_management_system_mobile/core/constant/app_styles.dart';
 import 'package:donation_management_system_mobile/core/shared/widgets/bouncy_button.dart';
 import 'package:donation_management_system_mobile/core/shared/widgets/section_header_delegate.dart';
-import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/home_header.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/recent_stories_section.dart';
 import 'package:donation_management_system_mobile/features/home/presentation/view/widgets/urgent_cases_section.dart';
 import 'package:flutter/material.dart';
@@ -49,16 +48,47 @@ class _HomeViewState extends State<HomeView> {
           controller: _scrollController,
           physics: const BouncingScrollPhysics(),
           slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
-                child: HomeHeader(scrollController: _scrollController),
+            SliverAppBar(
+              expandedHeight: 120.h,
+              backgroundColor: AppColors.backgroundColor,
+              elevation: 0,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                expandedTitleScale: 1.2,
+                titlePadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+                title: Text(
+                  'The Curated Sanctuary',
+                  style: AppStyles.font16SemiBoldHeader.copyWith(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                background: Container(
+                  color: AppColors.backgroundColor,
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 20.r,
+                        backgroundColor: AppColors.primaryColor.withValues(alpha: 0.1),
+                        child: Icon(Icons.person,
+                            color: AppColors.primaryColor, size: 24.sp),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.search,
+                            color: AppColors.headerText, size: 24.sp),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             SliverPersistentHeader(
               pinned: true,
               delegate: SectionHeaderDelegate(
-                height: 70,
+                height: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -99,7 +129,7 @@ class _HomeViewState extends State<HomeView> {
             SliverPersistentHeader(
               pinned: true,
               delegate: SectionHeaderDelegate(
-                height: 40,
+                height: 60,
                 child: Text(
                   'Recent Stories',
                   style: AppStyles.font20BoldHeader,

@@ -35,13 +35,20 @@ class FundingStatusCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '£54,230',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF2E7D6F),
-                        ),
+                      TweenAnimationBuilder<double>(
+                        duration: const Duration(seconds: 2),
+                        curve: Curves.easeOutExpo,
+                        tween: Tween(begin: 0, end: 54230),
+                        builder: (context, value, child) {
+                          return Text(
+                            '£${value.toInt().toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 28.sp,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF2E7D6F),
+                            ),
+                          );
+                        },
                       ),
                       Text(
                         'raised of £85,000 goal',
@@ -52,13 +59,20 @@ class FundingStatusCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    '64%',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF1976D2), // Blue percentage
-                    ),
+                  TweenAnimationBuilder<double>(
+                    duration: const Duration(seconds: 2),
+                    curve: Curves.easeOutExpo,
+                    tween: Tween(begin: 0, end: 0.64),
+                    builder: (context, value, child) {
+                      return Text(
+                        '${(value * 100).toInt()}%',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFF1976D2),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
